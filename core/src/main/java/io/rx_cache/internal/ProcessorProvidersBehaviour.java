@@ -16,6 +16,8 @@
 
 package io.rx_cache.internal;
 
+import javax.inject.Inject;
+
 import io.rx_cache.ConfigProvider;
 import io.rx_cache.EvictDynamicKey;
 import io.rx_cache.EvictDynamicKeyGroup;
@@ -26,7 +28,6 @@ import io.rx_cache.internal.cache.EvictExpiredRecordsPersistence;
 import io.rx_cache.internal.cache.GetDeepCopy;
 import io.rx_cache.internal.cache.TwoLayersCache;
 import io.rx_cache.internal.migration.DoMigrations;
-import javax.inject.Inject;
 import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func0;
@@ -128,11 +129,11 @@ public final class ProcessorProvidersBehaviour implements ProcessorProviders {
 
         clearKeyIfNeeded(configProvider);
 
-        if (data == null) {
-          throw new RxCacheException(Locale.NOT_DATA_RETURN_WHEN_CALLING_OBSERVABLE_LOADER
-              + " "
-              + configProvider.getProviderKey());
-        }
+//        if (data == null) {
+//          throw new RxCacheException(Locale.NOT_DATA_RETURN_WHEN_CALLING_OBSERVABLE_LOADER
+//              + " "
+//              + configProvider.getProviderKey());
+//        }
 
         twoLayersCache.save(configProvider.getProviderKey(), configProvider.getDynamicKey(),
             configProvider.getDynamicKeyGroup(), data, configProvider.getLifeTimeMillis(),
